@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using VuelosCRUD;
+using VuelosCRUD.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+
+builder.Services.AddDbContext<ApplicationDbContext>
+    (options => options.UseMySql("Server=localhost;Port=3306;Database=vuelos;Uid=root;Pwd=cordillera;", serverVersion, options => options.EnableRetryOnFailure()));
+
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 var app = builder.Build();
 
