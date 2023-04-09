@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 
 builder.Services.AddDbContext<ApplicationDbContext>
-    (options => options.UseMySql("Server=localhost;Port=3306;Database=vuelos;Uid=root;Pwd=cordillera;", serverVersion, options => options.EnableRetryOnFailure()));
+    (options => options.UseMySql("Server=localhost;Port=3306;Database=vuelo;Uid=root;Pwd=cordillera;", serverVersion, options => options.EnableRetryOnFailure()));
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
