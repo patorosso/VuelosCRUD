@@ -38,7 +38,7 @@ namespace VuelosCRUD.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Aerolineas");
+                    b.ToTable("Aerolineas", (string)null);
                 });
 
             modelBuilder.Entity("VuelosCRUD.Models.Vuelo", b =>
@@ -62,7 +62,7 @@ namespace VuelosCRUD.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vuelos");
+                    b.ToTable("Vuelos", (string)null);
                 });
 #pragma warning restore 612, 618
         }

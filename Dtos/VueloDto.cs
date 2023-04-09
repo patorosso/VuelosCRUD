@@ -4,13 +4,15 @@ namespace VuelosCRUD.Dtos
 {
     public class VueloDto
     {
-        public int Id { get; set; }
+        public byte Id { get; set; }
 
         [Required]
         public string FlightNumber { get; set; } = null!;
 
+        public byte AerolineaId { get; set; }
+
         [Required]
-        public string Airline { get; set; } = null!;
+        public AerolineaDto Aerolinea { get; set; } = null!;
 
         [Required]
         public bool Delayed { get; set; } = false;

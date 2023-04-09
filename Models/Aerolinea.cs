@@ -4,7 +4,7 @@ namespace VuelosCRUD.Models
 {
     public class Aerolinea
     {
-        public int Id { get; set; }
+        public byte Id { get; set; }
 
         [StringLength(maximumLength: 100)]
         public string? Name { get; set; }

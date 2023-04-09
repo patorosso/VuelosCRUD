@@ -10,9 +10,10 @@ namespace VuelosCRUD.Models
         [StringLength(maximumLength: 12)]
         public string FlightNumber { get; set; } = null!;
 
+        public Aerolinea? Aerolinea { get; set; }
+
         [Required]
-        [StringLength(maximumLength: 70)]
-        public string Airline { get; set; } = null!;
+        public byte AirlineId { get; set; }
 
         [Required]
         public bool Delayed { get; set; } = false;
