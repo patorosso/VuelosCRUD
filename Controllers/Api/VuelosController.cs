@@ -6,5 +6,7 @@ namespace VuelosCRUD.Controllers.Api
     [ApiController]
     public class VuelosController : ControllerBase
     {
+
     }
+
 }
