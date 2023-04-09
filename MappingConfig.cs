@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using VuelosCRUD.Dtos;
+using VuelosCRUD.Models;
 
 namespace VuelosCRUD
 {
@@ -6,7 +8,8 @@ namespace VuelosCRUD
     {
         public MappingConfig()
         {
-
+            CreateMap<Vuelo, VueloDto>();
+            CreateMap<VueloDto, Vuelo>();
         }
     }
 }
