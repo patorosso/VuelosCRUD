@@ -11,6 +11,7 @@ namespace VuelosCRUD
             CreateMap<Vuelo, VueloDto>();
             CreateMap<VueloDto, Vuelo>();
             CreateMap<Aerolinea, AerolineaDto>();
+            CreateMap<AerolineaDto, Aerolinea>();
         }
     }
 }

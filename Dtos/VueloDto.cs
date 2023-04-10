@@ -9,12 +9,16 @@ namespace VuelosCRUD.Dtos
         [Required]
         public string NumeroDeVuelo { get; set; } = null!;
 
+
         public short AerolineaId { get; set; }
 
-        [Required]
-        public AerolineaDto Aerolinea { get; set; } = null!;
+
+        public AerolineaDto? Aerolinea { get; set; }
 
         [Required]
         public bool Demorado { get; set; } = false;
+
+        [Required]
+        public DateTime? Horario { get; set; }
     }
 }

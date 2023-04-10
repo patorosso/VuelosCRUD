@@ -12,11 +12,14 @@ namespace VuelosCRUD.Models
 
         public Aerolinea? Aerolinea { get; set; }
 
-        [Required]
+
         public short AerolineaId { get; set; }
 
         [Required]
         public bool Demorado { get; set; } = false;
+
+        [Required]
+        public DateTime? Horario { get; set; }
 
 
 

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Baja";
+    Layout = "_Layout";
+}
+<h2 style="margin-bottom: 50px;">Baja de vuelo</h2>
+
+
+
+
+
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+    <form method="post" asp-controller="Vuelos" asp-action="Baja" id="eliminar-form">
+        <button type="submit" id="btnGroupDrop1" class="btn btn-danger disabled">Eliminar</button>
+        <input type="hidden" id="eliminar-id" name="id" />
+    </form>
+    <div class="btn-group" role="group">
+        <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu" id="vuelos-dropdown" aria-labelledby="btnGroupDrop4">
+            <a class="dropdown-item" href="#">Loading...</a>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const dropdown = document.getElementById('vuelos-dropdown');
+    const a = document.getElementById('btnGroupDrop1');
+
+    fetch('/api/vuelos')
+        .then(response => response.json())
+        .then(data => {
+            dropdown.innerHTML = '';
+            data.forEach(vuelo => {
+                const link = document.createElement('a');
+                link.classList.add('dropdown-item');
+                link.textContent = vuelo.numeroDeVuelo;
+                link.dataset.id = vuelo.id;
+                dropdown.appendChild(link);
+            });
+        })
+        .catch(error => console.error(error));
+    
+    
+    dropdown.addEventListener('click', (event) => {
+        
+        a.textContent = event.target.textContent;
+        const id = event.target.dataset.id;
+        document.getElementById('eliminar-id').value = id;
+
+       
+        if (a.textContent !== 'Eliminar') {
+            a.classList.remove('disabled');
+        }
+    });
+</script>

@@ -2,7 +2,7 @@
     ViewBag.Title = "Vuelos";
     Layout = "_Layout";
 }
-<h1>Vuelos</h1>
+<h1>Próximos vuelos</h1>
 
 
 
@@ -10,9 +10,10 @@
 <table id="vuelos" class="table table-bordered table-hover">
     <thead>
         <tr>
+            <th>Horario de llegada</th>
             <th>Vuelo</th>
-            <th>Aerolinea</th>
-            <th>Delete</th>
+            <th>Aerolínea</th>
+            <th>Demorado</th>
         </tr>
     </thead>
     <tbody>
@@ -29,38 +30,27 @@
             data: vuelos,
             columns: [
                 {
-                    data: "numeroDeVuelo", title: 'Numero de Vuelo'
+                    data: "horario",
+                    title: "Horario de llegada",
+                    render: function (data, type, row, meta) {
+                        return moment(data).format("HH:mm");
+                    },
+                },
+                {
+                    data: "numeroDeVuelo", title: 'Vuelo'
                     
                 },
-                { data: 'aerolinea.nombre', title: 'Aerolinea' },
+                { data: 'aerolinea.nombre', title: 'Aerolínea' },
+                
                 {
-                    title: 'Delete',
-                    render: function (data, type, vuelo) {
-                        return "<button class='btn btn-danger btn-sm js-delete' data-vuelo-id='" + vuelo.id + "'>Delete</button>";
-                    }
+                    data: "demorado",
+                    title: "Demorado",
+                    render: function (data) {
+                        return data ? "Sí" : "No";
+                    },
                 }
             ]
         });
-
-        $('#vuelos').on('click', '.js-delete', function () {
-            const vueloId = $(this).data('vuelo-id');
-            const tr = $(this).closest('tr');
-
-            if (confirm("Está seguro de querer borrar este vuelo?")) {
-                fetch('/api/vuelos/' + vueloId, {
-                    method: 'DELETE',
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta.');
-                        }
-                        table.row(tr).remove().draw(); // linea de Mosh para borrar hasta cuando buscas
-
-                    })
-                    .catch(error => {
-                        console.error('Hubo un error.', error);
-                    });
-            }
-        });
     });
+       
 </script>
