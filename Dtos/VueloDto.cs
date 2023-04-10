@@ -15,8 +15,8 @@ namespace VuelosCRUD.Dtos
 
         public AerolineaDto? Aerolinea { get; set; }
 
-        [Required]
-        public bool Demorado { get; set; } = false;
+
+        public bool Demorado { get; set; }
 
         [Required]
         public DateTime? Horario { get; set; }

@@ -10,7 +10,7 @@
 
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
     <form method="post" asp-controller="Vuelos" asp-action="Baja" id="eliminar-form">
-        <button type="submit" id="btnGroupDrop1" class="btn btn-danger disabled">Eliminar</button>
+        <button type="submit" id="btnGroupDrop1" class="btn btn-danger disabled" style="border-top-right-radius:0;border-bottom-right-radius:0;">Eliminar</button>
         <input type="hidden" id="eliminar-id" name="id" />
     </form>
     <div class="btn-group" role="group">
@@ -31,14 +31,16 @@
         .then(response => response.json())
         .then(data => {
             dropdown.innerHTML = '';
-            const link = document.createElement('a');
+            
             if(data.length == 0)
             {
+                const link = document.createElement('a');
                 link.classList.add('dropdown-item');
                 link.textContent = "No flights";
                 dropdown.appendChild(link);
             }else{
                 data.forEach(vuelo => {
+                    const link = document.createElement('a');
                     link.classList.add('dropdown-item');
                     link.textContent = vuelo.numeroDeVuelo;
                     link.dataset.id = vuelo.id;
@@ -49,12 +51,17 @@
         })
         .catch(error => console.error(error));
     
+    a.addEventListener('click', (event) => {
+        confirm("¿Esta seguro de querer eliminar este vuelo?")} 
+    )
     
     dropdown.addEventListener('click', (event) => {
         
-        a.textContent = event.target.textContent;
-        const id = event.target.dataset.id;
-        document.getElementById('eliminar-id').value = id;
+            a.textContent = event.target.textContent;
+            const id = event.target.dataset.id;
+            document.getElementById('eliminar-id').value = id;
+        
+        
 
        
         if (a.textContent !== 'Eliminar' && a.textContent !== 'No flights') {

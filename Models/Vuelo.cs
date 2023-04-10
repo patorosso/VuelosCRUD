@@ -7,6 +7,7 @@ namespace VuelosCRUD.Models
         public int Id { get; set; }
 
         [Required]
+        [FlightNumberValidation]
         [StringLength(maximumLength: 12)]
         public string NumeroDeVuelo { get; set; } = null!;
 
@@ -15,9 +16,8 @@ namespace VuelosCRUD.Models
 
         public short AerolineaId { get; set; }
 
-        [Required]
-        public bool Demorado { get; set; } = false;
 
+        public bool Demorado { get; set; }
         [Required]
         public DateTime? Horario { get; set; }
 

@@ -28,43 +28,35 @@ namespace VuelosCRUD.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AltaVuelo(Vuelo vuelo)
+        public async Task<IActionResult> Alta(Vuelo vuelo)
         {
+            var dbId = await _context.Vuelos.SingleOrDefaultAsync(c => c.NumeroDeVuelo == vuelo.NumeroDeVuelo);
+
+            if (dbId != null)
+                ModelState.AddModelError("NumeroDeVuelo", "Ya existe este vuelo, por favor pruebe otro.");
+
+
+
             if (ModelState.IsValid)
             {
-                // Split the flight number into airline code and flight number
                 string[] parts = vuelo.NumeroDeVuelo.Split(' ');
-                if (parts.Length != 2)
-                {
-                    // Handle invalid flight number
-                    return BadRequest("Invalid flight number");
-                }
-                string airlineCode = parts[0];
 
+                var airline = _context.Aerolineas.FirstOrDefault(a => a.Iata == parts[0]);
+                if (airline != null)
                 {
-                    var airline = _context.Aerolineas.FirstOrDefault(a => a.Iata == airlineCode);
+                    vuelo.AerolineaId = airline.Id;
+                }
+                else
+                {
+                    airline = _context.Aerolineas.FirstOrDefault(a => a.Icao == parts[0]);
                     if (airline != null)
                     {
                         vuelo.AerolineaId = airline.Id;
                     }
-                    else
-                    {
-                        airline = _context.Aerolineas.FirstOrDefault(a => a.Icao == airlineCode);
-                        if (airline != null)
-                        {
-                            vuelo.AerolineaId = airline.Id;
-                        }
-                        else return BadRequest("Invalid flight number");
-                    }
+                    else vuelo.AerolineaId = 1; // Unknown airline on my db
                 }
 
-                var dbId = await _context.Vuelos.SingleOrDefaultAsync(c => c.Id == vuelo.Id);
 
-                if (dbId != null && vuelo.Id == dbId.Id)
-                {
-                    ModelState.AddModelError("Id existente", "Ya existe este id, por favor pruebe otro.");
-                    return BadRequest(ModelState);
-                }
 
 
 
@@ -73,7 +65,7 @@ namespace VuelosCRUD.Controllers
                 return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index");
+            return View();
 
 
         }
