@@ -17,16 +17,19 @@ namespace VuelosCRUD.Controllers
             _context.Dispose();
         }
 
+
+
+
         public IActionResult Index()
         {
             return View();
         }
 
-
         public IActionResult Alta()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Alta(Vuelo vuelo)
@@ -53,7 +56,7 @@ namespace VuelosCRUD.Controllers
                     {
                         vuelo.AerolineaId = airline.Id;
                     }
-                    else vuelo.AerolineaId = 1; // Unknown airline on my db
+                    else vuelo.AerolineaId = 1; // Unknown airline on my db. También podria directamente rechazarlo y listo.
                 }
 
 
