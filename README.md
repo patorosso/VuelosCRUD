@@ -11,7 +11,7 @@
 ---
 
 ## Index
-![](https://github.com/patorosso/VuelosCRUD/blob/master/readme_images/index.PNG?raw=true)
+![](https://github.com/patorosso/VuelosCRUD/blob/master/readme_images/Index.PNG?raw=true)
 
 ---
 
