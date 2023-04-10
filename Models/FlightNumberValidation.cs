@@ -28,7 +28,7 @@ namespace VuelosCRUD.Models
                 return new ValidationResult("La primera parte deben ser letras.");
             }
 
-            string airlineCodeNumbers = parts[0]; //segunda parte
+            string airlineCodeNumbers = parts[1]; //segunda parte
 
             if (int.TryParse(airlineCodeNumbers, out int num))
             {
