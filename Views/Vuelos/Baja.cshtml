@@ -31,13 +31,21 @@
         .then(response => response.json())
         .then(data => {
             dropdown.innerHTML = '';
-            data.forEach(vuelo => {
-                const link = document.createElement('a');
+            const link = document.createElement('a');
+            if(data.length == 0)
+            {
                 link.classList.add('dropdown-item');
-                link.textContent = vuelo.numeroDeVuelo;
-                link.dataset.id = vuelo.id;
+                link.textContent = "No flights";
                 dropdown.appendChild(link);
-            });
+            }else{
+                data.forEach(vuelo => {
+                    link.classList.add('dropdown-item');
+                    link.textContent = vuelo.numeroDeVuelo;
+                    link.dataset.id = vuelo.id;
+                    dropdown.appendChild(link);
+                });
+            }
+            
         })
         .catch(error => console.error(error));
     
@@ -49,7 +57,7 @@
         document.getElementById('eliminar-id').value = id;
 
        
-        if (a.textContent !== 'Eliminar') {
+        if (a.textContent !== 'Eliminar' && a.textContent !== 'No flights') {
             a.classList.remove('disabled');
         }
     });
