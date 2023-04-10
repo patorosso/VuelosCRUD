@@ -9,7 +9,7 @@ namespace VuelosCRUD.Models
         [StringLength(maximumLength: 100)]
         public string? Nombre { get; set; }
 
-        [StringLength(maximumLength: 15)]
+        [StringLength(maximumLength: 40)]
         public string? Iata { get; set; }
 
         [StringLength(maximumLength: 15)]
