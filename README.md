@@ -1,7 +1,7 @@
 # VuelosCRUD
 
 ## Overview
-VuelosCRUD es una solución web sencilla para manejar información de vuelos no reales, usando C#, .NET Core 7, Entity 7, y MySql.
+* VuelosCRUD es una solución web sencilla para manejar información de vuelos no reales, usando C#, .NET Core 7, Entity 7, y MySql.
 ---
 
 ## Features
