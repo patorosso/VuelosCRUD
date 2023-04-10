@@ -10,7 +10,7 @@
 * Base de datos de más de 5000 aerolíneas con códigos IATA y ICAO para verificación de entrada de datos.
 ---
 
-## Index
+## Vuelos
 ![](https://github.com/patorosso/VuelosCRUD/blob/master/readme_images/Index.PNG?raw=true)
 
 ---
