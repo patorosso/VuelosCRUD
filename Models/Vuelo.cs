@@ -6,7 +6,7 @@ namespace VuelosCRUD.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El campo es obligatorio.")]
         [FlightNumberValidation]
         [StringLength(maximumLength: 12)]
         public string NumeroDeVuelo { get; set; } = null!;
@@ -18,7 +18,7 @@ namespace VuelosCRUD.Models
 
 
         public bool Demorado { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo es obligatorio.")]
         public DateTime? Horario { get; set; }
 
 

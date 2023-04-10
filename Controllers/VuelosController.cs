@@ -28,13 +28,13 @@ namespace VuelosCRUD.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Alta(Vuelo vuelo)
         {
             var dbId = await _context.Vuelos.SingleOrDefaultAsync(c => c.NumeroDeVuelo == vuelo.NumeroDeVuelo);
 
             if (dbId != null)
                 ModelState.AddModelError("NumeroDeVuelo", "Ya existe este vuelo, por favor pruebe otro.");
-
 
 
             if (ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace VuelosCRUD.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost] //En realidad delete
         public async Task<IActionResult> Baja(int id)
         {
 
