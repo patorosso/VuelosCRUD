@@ -52,7 +52,11 @@
         .catch(error => console.error(error));
     
     a.addEventListener('click', (event) => {
-        confirm("¿Esta seguro de querer eliminar este vuelo?")} 
+        if(!confirm("¿Esta seguro de querer eliminar este vuelo?"))
+        {
+
+        }
+    } 
     )
     
     dropdown.addEventListener('click', (event) => {

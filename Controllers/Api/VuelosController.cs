@@ -93,11 +93,18 @@ namespace VuelosCRUD.Controllers.Api
                 }
             }
 
+            //check id duplicado
             var dbId = await _context.Vuelos.SingleOrDefaultAsync(c => c.Id == vueloDto.Id);
-
             if (dbId != null && vueloDto.Id == dbId.Id)
             {
                 ModelState.AddModelError("Id existente", "Ya existe este id, por favor pruebe otro.");
+                return BadRequest(ModelState);
+            }
+            //check numeroDeVuelo duplicado
+            var vueloNumeroDuplicadoInDb = await _context.Vuelos.SingleOrDefaultAsync(c => c.NumeroDeVuelo == vueloDto.NumeroDeVuelo); // busco en mi db el num de vuelo
+            if (vueloNumeroDuplicadoInDb != null && vueloNumeroDuplicadoInDb.Id != vueloDto.Id) // si es un match, el unico valor que admito es el mismo, porque quizas quiero el mismo numVuelo, pero cambio detalles.
+            {
+                ModelState.AddModelError("Numero de vuelo existente", "Ya existe este numero de vuelo, por favor pruebe otro.");
                 return BadRequest(ModelState);
             }
 
@@ -115,9 +122,10 @@ namespace VuelosCRUD.Controllers.Api
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteVuelo(int id)
+        public async Task<IActionResult> DeleteVuelo(int? id)
         {
-            if (id == 0)
+
+            if (id == 0 || id == null)
                 return BadRequest();
 
             var vuelo = await _context.Vuelos.SingleOrDefaultAsync(x => x.Id == id);

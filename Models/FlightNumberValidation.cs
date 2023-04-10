@@ -11,6 +11,11 @@ namespace VuelosCRUD.Models
 
             var vuelo = (Vuelo)validationContext.ObjectInstance;
 
+            if (vuelo.NumeroDeVuelo == null || vuelo.NumeroDeVuelo.Length == 0)
+            {
+                return new ValidationResult("El campo es obligatorio.");
+            }
+
             string[] parts = vuelo.NumeroDeVuelo.Split(' ');
             if (parts.Length != 2)
             {
