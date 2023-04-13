@@ -16,6 +16,16 @@ namespace VuelosCRUD.Models
                 return new ValidationResult("El campo es obligatorio.");
             }
 
+            if (Regex.IsMatch(vuelo.NumeroDeVuelo, @"^[a-zA-Z]+$"))
+            {
+                return new ValidationResult("Debe haber también números.");
+            }
+
+            if (Regex.IsMatch(vuelo.NumeroDeVuelo, "^[0-9]+$"))
+            {
+                return new ValidationResult("Debe haber también letras.");
+            }
+
             string[] parts = vuelo.NumeroDeVuelo.Split(' ');
             if (parts.Length != 2)
             {
@@ -28,11 +38,11 @@ namespace VuelosCRUD.Models
                 return new ValidationResult("La primera parte deben ser letras.");
             }
 
-            string airlineCodeNumbers = parts[0]; //segunda parte
+            string airlineCodeNumbers = parts[1]; //segunda parte
 
-            if (int.TryParse(airlineCodeNumbers, out int num))
+            if (!Regex.IsMatch(airlineCodeNumbers, "^[0-9]+$"))
             {
-                return new ValidationResult("La segunda parte deben ser numeros.");
+                return new ValidationResult("La segunda parte debe contener solo números.");
             }
 
             return ValidationResult.Success;
