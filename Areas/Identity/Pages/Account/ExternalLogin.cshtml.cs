@@ -78,6 +78,13 @@ namespace VuelosCRUD.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            /// 
+            //agregado por mi
+            [Required(ErrorMessage = "El campo es obligatorio.")]
+            [DataType(DataType.Text)]
+            //[Display(CustomName = "Nombre")]
+            public string CustomName { get; set; }
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
@@ -149,6 +156,8 @@ namespace VuelosCRUD.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+
+                user.CustomName = Input.CustomName; // agregado por mi
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
