@@ -1,10 +1,15 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using VuelosCRUD.Areas.Identity.Data;
+
+@inject SignInManager<VuelosCRUDUser> SignInManager
+@inject UserManager<VuelosCRUDUser> UserManager
+
+@model string
+@{
 	ViewBag.Title = "Vuelos";
 	Layout = "_Layout";
 }
 <h1>Próximos vuelos</h1>
-
-
 
 
 
@@ -16,7 +21,11 @@
 			<th>Vuelo</th>
 			<th>Aerolínea</th>
 			<th>Demorado</th>
-			<th>Acción</th>
+			@if (SignInManager.IsSignedIn(User))
+			{			
+				<th>Acción</th>
+			}	
+			
 		</tr>
 	</thead>
 	<tbody>
@@ -24,69 +33,178 @@
 </table>
 
 
+@if (SignInManager.IsSignedIn(User))
+{
 
-<script>
-	document.addEventListener('DOMContentLoaded', async () => {
+	<script>
+		document.addEventListener('DOMContentLoaded', async () => {
 		const response = await fetch('/api/vuelos');
 		const vuelos = await response.json();
 		var table = $('#vuelos').DataTable({
-			data: vuelos,
-			columns: [
-				{
-					data: "horario",
-					title: "Horario de llegada",
-					render: function (data, type, row, meta) {
-						return moment(data).format("HH:mm");
+				language: {
+					"sProcessing": "Procesando...",
+					"sLengthMenu": "Mostrar _MENU_ registros",
+					"sZeroRecords": "No se encontraron resultados",
+					"sEmptyTable": "Ningún dato disponible en esta tabla",
+					"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+					"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+					"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+					"sInfoPostFix": "",
+					"sSearch": "Buscar:",
+					"sUrl": "",
+					"sInfoThousands": ",",
+					"sLoadingRecords": "Cargando...",
+					"oPaginate": {
+						"sFirst": "Primero",
+						"sLast": "Último",
+						"sNext": "Siguiente",
+						"sPrevious": "Anterior"
 					},
-				},
-				{
-					data: "numeroDeVuelo", title: 'Vuelo'
-					
-				},
-				{ data: 'aerolinea.nombre', title: 'Aerolínea' },
-				
-				{
-					data: "demorado",
-					title: "Demorado",
-					render: function (data) {
-						return data ? "Sí" : "No";
-					},
-				},
-				{
-					data: null,
-					title: 'Acción',
-					render: function (data, type, row, meta) {
-						return '<div style="position: relative;">' +
-							'<button class="btn btn-primary btn-sm" onclick="location.href=\'/vuelos/modificacion/' + data.id + '\'" style="position: absolute;top:-2.6px; left: 0;">Editar</button>' +
-							'<button class="btn btn-danger btn-sm js-delete"  data-vuelo-id="' + data.id + '" style="position: absolute; right: 0;top:-3px;">Eliminar</button>'  +
-							'</div>';
-
+					"oAria": {
+						"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 					}
-				}
-			]
+				},
+		data: vuelos,
+		columns: [
+		{
+		data: "horario",
+		title: "Horario de llegada",
+		render: function (data, type, row, meta) {
+		return moment(data).format("HH:mm");
+		},
+		},
+		{
+		data: "numeroDeVuelo", title: 'Vuelo'
+
+		},
+		{ data: 'aerolinea.nombre', title: 'Aerolínea' },
+
+		{
+		data: "demorado",
+		title: "Demorado",
+		render: function (data) {
+		return data ? "Sí" : "No";
+		},
+		},
+		{
+		data: null,
+		title: 'Acción',
+		render: function (data, type, row, meta) {
+		return '<div style="position: relative;">' +
+		'<button class="btn btn-primary btn-sm" onclick="location.href=\'/vuelos/modificacion/' + data.id + '\'" style="position: absolute;top:-2.6px; left: 0;">Editar</button>' +
+		'<button class="btn btn-danger btn-sm js-delete"  data-vuelo-id="' + data.id + '" style="position: absolute; right: 0;top:-3px;">Eliminar</button>'  +
+		'</div>';
+
+		}
+		}
+		]
 		});
-	
 
 
-	$('#vuelos').on('click', '.js-delete', function () {
+
+		$('#vuelos').on('click', '.js-delete', function () {
 		const vueloId = $(this).data('vuelo-id');
 		const tr = $(this).closest('tr');
 
 		if (confirm("¿Está seguro de querer eliminar este vuelo?")) {
-			fetch('/api/vuelos/' + vueloId, {
-				method: 'DELETE',
-			})
-				.then(response => {
-					if (!response.ok) {
-						throw new Error('Error en la respuesta.');
-					}
-					table.row(tr).remove().draw(); // linea de Mosh para borrar hasta cuando buscas
-				})
-				.catch(error => {
-					console.error('Hubo un error.', error);
-				});
+		fetch('/api/vuelos/' + vueloId, {
+		method: 'DELETE',
+		})
+		.then(response => {
+		if (!response.ok) {
+		throw new Error('Error en la respuesta.');
 		}
-	});
-	});
-	   
-</script>
+		table.row(tr).remove().draw(); // linea de Mosh para borrar hasta cuando buscas
+		})
+		.catch(error => {
+		console.error('Hubo un error.', error);
+		});
+		}
+		});
+		});
+
+	</script>
+
+}
+else
+{
+	<script>
+		document.addEventListener('DOMContentLoaded', async () => {
+			const response = await fetch('/api/vuelos');
+			const vuelos = await response.json();
+			var table = $('#vuelos').DataTable({
+				language: {
+					"sProcessing": "Procesando...",
+					"sLengthMenu": "Mostrar _MENU_ registros",
+					"sZeroRecords": "No se encontraron resultados",
+					"sEmptyTable": "Ningún dato disponible en esta tabla",
+					"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+					"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+					"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+					"sInfoPostFix": "",
+					"sSearch": "Buscar:",
+					"sUrl": "",
+					"sInfoThousands": ",",
+					"sLoadingRecords": "Cargando...",
+					"oPaginate": {
+						"sFirst": "Primero",
+						"sLast": "Último",
+						"sNext": "Siguiente",
+						"sPrevious": "Anterior"
+					},
+					"oAria": {
+						"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+					}
+				},
+				data: vuelos,
+				columns: [
+					{
+						data: "horario",
+						title: "Horario de llegada",
+						render: function (data, type, row, meta) {
+							return moment(data).format("HH:mm");
+						},
+					},
+					{
+						data: "numeroDeVuelo", title: 'Vuelo'
+
+					},
+					{ data: 'aerolinea.nombre', title: 'Aerolínea' },
+
+					{
+						data: "demorado",
+						title: "Demorado",
+						render: function (data) {
+							return data ? "Sí" : "No";
+						},
+					}
+				]
+			});
+
+
+
+			$('#vuelos').on('click', '.js-delete', function () {
+				const vueloId = $(this).data('vuelo-id');
+				const tr = $(this).closest('tr');
+
+				if (confirm("¿Está seguro de querer eliminar este vuelo?")) {
+					fetch('/api/vuelos/' + vueloId, {
+						method: 'DELETE',
+					})
+						.then(response => {
+							if (!response.ok) {
+								throw new Error('Error en la respuesta.');
+							}
+							table.row(tr).remove().draw(); // linea de Mosh para borrar hasta cuando buscas
+						})
+						.catch(error => {
+							console.error('Hubo un error.', error);
+						});
+				}
+			});
+		});
+
+	</script>
+}

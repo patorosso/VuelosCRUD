@@ -10,12 +10,16 @@
 
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
     <form method="post" asp-controller="Vuelos" asp-action="Baja" id="eliminar-form">
-        <button type="submit" id="btnGroupDrop1" class="btn btn-danger disabled" style="border-top-right-radius:0;border-bottom-right-radius:0;">Eliminar</button>
+        <button type="submit" id="btnGroupDrop1" class="btn btn-danger disabled" 
+            style="border-top-right-radius:0;border-bottom-right-radius:0;"
+                onclick="return confirm('¿Esta seguro de querer eliminar este vuelo?')">
+            Eliminar
+        </button>
         <input type="hidden" id="eliminar-id" name="id" />
     </form>
     <div class="btn-group" role="group">
         <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-        <div class="dropdown-menu" id="vuelos-dropdown" aria-labelledby="btnGroupDrop4">
+        <div class="dropdown-menu" id="vuelos-dropdown" style="cursor: pointer;" aria-labelledby="btnGroupDrop4">
             <a class="dropdown-item" href="#">Loading...</a>
         </div>
     </div>
@@ -51,13 +55,6 @@
         })
         .catch(error => console.error(error));
     
-    a.addEventListener('click', (event) => {
-        if(!confirm("¿Esta seguro de querer eliminar este vuelo?"))
-        {
-
-        }
-    } 
-    )
     
     dropdown.addEventListener('click', (event) => {
         
