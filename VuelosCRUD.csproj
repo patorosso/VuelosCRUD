@@ -28,4 +28,12 @@
     <Folder Include="Migrations\airlineDB\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\alta.PNG" />
+    <None Include="wwwroot\images\baja1.PNG" />
+    <None Include="wwwroot\images\baja2.PNG" />
+    <None Include="wwwroot\images\edit.PNG" />
+    <None Include="wwwroot\images\Index.PNG" />
+  </ItemGroup>
+
 </Project>
