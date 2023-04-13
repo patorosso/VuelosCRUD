@@ -11,16 +11,16 @@
 ---
 
 ## Vuelos
-![](https://github.com/patorosso/VuelosCRUD/blob/master/Images/Index.PNG?raw=true)
+![](https://github.com/patorosso/VuelosCRUD/blob/master/images/Index.PNG?raw=true)
 
 ---
 
 ## Alta
-![](https://github.com/patorosso/VuelosCRUD/blob/master/Images/alta.PNG?raw=true)
+![](https://github.com/patorosso/VuelosCRUD/blob/master/images/alta.PNG?raw=true)
 
 ---
 
 ## Editar
-![](https://github.com/patorosso/VuelosCRUD/blob/master/Images/edit.PNG?raw=true)
+![](https://github.com/patorosso/VuelosCRUD/blob/master/images/edit.PNG?raw=true)
 
 
