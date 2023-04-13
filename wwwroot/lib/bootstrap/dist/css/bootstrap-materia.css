@@ -3170,20 +3170,20 @@ textarea.form-control-lg {
 }
 
 .btn-link {
-  --bs-btn-font-weight: 400;
-  --bs-btn-color: var(--bs-link-color);
-  --bs-btn-bg: transparent;
-  --bs-btn-border-color: transparent;
-  --bs-btn-hover-color: var(--bs-link-hover-color);
-  --bs-btn-hover-border-color: transparent;
-  --bs-btn-active-color: var(--bs-link-hover-color);
-  --bs-btn-active-border-color: transparent;
-  --bs-btn-disabled-color: #666;
-  --bs-btn-disabled-border-color: transparent;
-  --bs-btn-box-shadow: none;
-  --bs-btn-focus-shadow-rgb: 66, 166, 245;
-  text-decoration: underline;
-  background-image: none;
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: var(--bs-link-color);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: var(--bs-link-hover-color);
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-color: var(--bs-link-hover-color);
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-disabled-color: #666;
+    --bs-btn-disabled-border-color: transparent;
+    --bs-btn-box-shadow: none;
+    --bs-btn-focus-shadow-rgb: 66, 166, 245;
+    text-decoration: underline;
+    background-image: none;
 }
 .btn-link:focus-visible {
   color: var(--bs-btn-color);

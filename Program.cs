@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VuelosCRUD;
 using VuelosCRUD.Areas.Identity.Data;
@@ -5,7 +6,7 @@ using VuelosCRUD.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = "Server=localhost;Port=3306;Database=vuelo;Uid=root;Pwd=cordillera;";
+var connectionString = builder.Configuration.GetConnectionString("local");
 
 builder.Services.AddControllersWithViews();
 
@@ -14,7 +15,10 @@ var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 builder.Services.AddDbContext<ApplicationDbContext>
     (options => options.UseMySql(connectionString, serverVersion, options => options.EnableRetryOnFailure()));
 
-builder.Services.AddDefaultIdentity<VuelosCRUDUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<VuelosCRUDUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultUI()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
