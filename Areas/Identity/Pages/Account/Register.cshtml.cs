@@ -123,7 +123,8 @@ namespace VuelosCRUD.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, StaticUserRoles.User);
+                    await _userManager.AddToRoleAsync(user, StaticUserRoles.User); //agregado por mi
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
