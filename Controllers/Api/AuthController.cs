@@ -20,6 +20,7 @@ namespace VuelosCRUD.Controllers.Api
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SeedRoles()
         {
             bool userExists = await _roleManager.RoleExistsAsync(StaticUserRoles.User);

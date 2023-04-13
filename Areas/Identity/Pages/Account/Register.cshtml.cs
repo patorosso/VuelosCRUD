@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using VuelosCRUD.Areas.Identity.Data;
+using VuelosCRUD.Models;
 
 namespace VuelosCRUD.Areas.Identity.Pages.Account
 {
@@ -122,6 +123,7 @@ namespace VuelosCRUD.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, StaticUserRoles.User);
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
