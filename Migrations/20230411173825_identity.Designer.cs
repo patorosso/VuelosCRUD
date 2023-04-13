@@ -12,7 +12,7 @@ namespace VuelosCRUD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230411173825_identity")]
-    partial class identity
+    partial class Identity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

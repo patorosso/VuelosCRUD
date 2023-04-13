@@ -24,10 +24,10 @@ builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
-#pragma warning disable CS8601 // Posible asignación de referencia nula
+#pragma warning disable CS8601 // Posible asignaciï¿½n de referencia nula
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-#pragma warning restore CS8601 // Posible asignación de referencia nula
+#pragma warning restore CS8601 // Posible asignaciï¿½n de referencia nula
 });
 
 var app = builder.Build();
