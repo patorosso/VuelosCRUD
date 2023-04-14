@@ -8,6 +8,7 @@
 * Alta, baja y modificación de vuelos.
 * Validación del lado del cliente y del servidor.
 * Base de datos de más de 5000 aerolíneas con códigos IATA y ICAO para verificación de entrada de datos.
+* Autenticación y autorización para usarios de forma local como también de forma exterior usando Google OAuth 2.0.
 ---
 
 ## Vuelos
@@ -22,5 +23,20 @@
 
 ## Editar
 ![](https://github.com/patorosso/VuelosCRUD/blob/master/wwwroot/images/edit.PNG?raw=true)
+
+---
+
+## Login
+![](https://github.com/patorosso/VuelosCRUD/blob/master/wwwroot/images/login.PNG?raw=true)
+
+---
+
+## Login
+![](https://github.com/patorosso/VuelosCRUD/blob/master/wwwroot/images/register.PNG?raw=true)
+
+---
+
+## User settings
+![](https://github.com/patorosso/VuelosCRUD/blob/master/wwwroot/images/edit_profile.PNG?raw=true)
 
 
