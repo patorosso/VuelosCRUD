@@ -21,6 +21,6 @@
 ---
 
 ## Editar
-![](https://github.com/patorosso/VuelosCRUD/blob/master/images/edit.PNG?raw=true)
+![](https://github.com/patorosso/VuelosCRUD/blob/master/wwwroot/images/edit.PNG?raw=true)
 
 
