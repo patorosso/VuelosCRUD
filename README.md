@@ -12,7 +12,7 @@
 ---
 
 ## Vuelos
-![](https://github.com/patorosso/VuelosCRUD/blob/master/wwwroot/images/Index.PNG?raw=true)
+![](https://github.com/patorosso/VuelosCRUD/blob/master/wwwroot/images/new_index.PNG?raw=true)
 
 ---
 
