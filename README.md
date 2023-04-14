@@ -8,7 +8,7 @@
 * Alta, baja y modificación de vuelos.
 * Validación del lado del cliente y del servidor.
 * Base de datos de más de 5000 aerolíneas con códigos IATA y ICAO para verificación de entrada de datos.
-* Autenticación y autorización para usarios de forma local como también de forma exterior usando Google OAuth 2.0.
+* Autenticación y autorización para usuarios de forma local como también de forma exterior usando Google OAuth 2.0.
 ---
 
 ## Vuelos
